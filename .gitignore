@@ -1,0 +1,24 @@
+
+# Environnement virtuel Python
+.venv/
+__pycache__/
+*.pyc
+
+# Fichiers de données locales et DuckDB
+*.db
+*.csv
+
+# Dossiers générés par dbt
+target/
+dbt_packages/
+logs/
+
+# Fichiers système ou de configuration d'IDE
+.DS_Store
+.vscode/
+
+
+
+# Base de données DuckDB locale
+*.duckdb
+olist.duckdb

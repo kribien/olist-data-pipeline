@@ -1,0 +1,68 @@
+
+version: 2
+
+models:
+  - name: dim_customers
+    description: Une ligne par identifiant client rattaché à une commande Olist.
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        data_tests:
+          - not_null
+
+  - name: dim_products
+    description: Une ligne par produit avec sa catégorie source et sa traduction disponible.
+    columns:
+      - name: product_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: dim_sellers
+    description: Une ligne par vendeur Olist.
+    columns:
+      - name: seller_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: fact_order_items
+    description: Une ligne par article de commande, avec les montants et les clés dimensionnelles.
+    columns:
+      - name: order_item_key
+        data_tests:
+          - unique
+          - not_null
+      - name: order_id
+        data_tests:
+          - not_null
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+      - name: product_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_products')
+                field: product_id
+      - name: seller_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_sellers')
+                field: seller_id
+      - name: item_price
+        data_tests:
+          - not_null
+      - name: freight_value
+        data_tests:
+          - not_null

@@ -1,0 +1,14 @@
+name: olist_pipeline
+version: "1.0.0"
+config-version: 2
+profile: olist_pipeline
+
+model-paths: ["models"]
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  olist_pipeline:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

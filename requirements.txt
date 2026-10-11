@@ -1,0 +1,7 @@
+
+
+duckdb==1.5.6
+dbt-core==1.12.5
+dbt-duckdb==1.11.0
+
+
